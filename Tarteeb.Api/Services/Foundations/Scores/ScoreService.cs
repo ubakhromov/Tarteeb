@@ -4,6 +4,7 @@
 //=================================
 
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Tarteeb.Api.Brokers.DateTimes;
 using Tarteeb.Api.Brokers.Loggings;
@@ -28,6 +29,11 @@ namespace Tarteeb.Api.Services.Foundations.Scores
             this.loggingBroker = loggingBroker;
         }
 
+        public IQueryable<Score> RetrieveAllScores()
+        {
+            throw new NotImplementedException();
+        }
+
         public ValueTask<Score> RemoveScoreByIdAsync(Guid scoreId) =>
         TryCatch(async () =>
         {
@@ -39,6 +45,6 @@ namespace Tarteeb.Api.Services.Foundations.Scores
             ValidateStorageScoreExist(maybeScore,scoreId);
 
             return await this.storageBroker.DeleteScoreAsync(maybeScore);
-        });   
+        });
     }
 }
